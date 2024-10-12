@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Card</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to bottom right, #ffccff, #ffffcc);
+      transition: background 1s ease;
+    }
+
+    .card, .gift-card {
+      position: relative;
+      width: 70%;
+      margin: 50px auto;
+      padding: 50px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .card {
+      display: block;
+    }
+
+    .gift-card {
+      display: none;
+    }
+
+    h1 {
+      color: #ff6f61;
+      font-size: 3em;
+      margin-bottom: 20px;
+      animation: textAnimation 2s ease-in-out infinite alternate;
+    }
+
+    h2, h3 {
+      color: #333;
+      font-size: 1.8em;
+      margin-bottom: 30px;
+    }
+
+    button {
+      background-color: #ff6f61;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1.2em;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      animation: pulse 1.5s infinite;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff8566;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes textAnimation {
+      0% { transform: rotate(-3deg); }
+      100% { transform: rotate(3deg); }
+    }
+
+    .confetti {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 30px;
+      background-color: #ffcc00;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    .gift-message {
+      font-size: 2em;
+      color: #76c7c0;
+      margin-top: 20px;
+    }
+
+    /* Transition for background change */
+    .gift-bg {
+      background: linear-gradient(to bottom right, #3a1c71, #d76d77, #ffaf7b);
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>🎉 Happy Birthday Ma-Ni(Gallium)! 🎉</h1>
+  <h2>Shaista Angel Magluyan 🎁</h2>
+  <button onclick="openGift()">Press me!</button>
+</div>
+
+<div class="confetti"></div>
+
+<div class="gift-card">
+  <h1>🎁 From Jose Rizal! 🎁</h1>
+  <h3>Mahal kong mamamayan ng Pilipinas,</h3>
+  <p class="gift-message">
+Maligayang kaarawan sa iyo! Nawa’y punuin ng pagmamahal, tawanan, at lahat ng bagay na nagpapasaya sayo sa araw na ito, 
+sapagkat ikaw, ay ang pag-asa ng bayan. Narito ang isang taon ng magagandang alaala at walang katapusang kaligayahan. Viva Felipinas, viva demokrasya!🌟🎂
+  </p>
+</div>
+
+<script>
+  // Confetti generator
+  function createConfetti() {
+    const confettiContainer = document.querySelector('.confetti');
+    for (let i = 0; i < 150; i++) {
+      let confetti = document.createElement('div');
+      confetti.classList.add('confetti-piece');
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.animationDuration = Math.random() * 3 + 3 + 's';
+      confetti.style.backgroundColor = getRandomColor();
+      confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+      confettiContainer.appendChild(confetti);
+    }
+  }
+
+  function getRandomColor() {
+    const colors = ['#ff6f61', '#ffcc00', '#ff4081', '#76c7c0', '#f4a261'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
+  // Open the gift and change the theme
+  function openGift() {
+    document.body.classList.add('gift-bg');
+    document.querySelector('.card').style.display = 'none';
+    document.querySelector('.gift-card').style.display = 'block';
+  }
+
+  // Initialize confetti
+  window.onload = createConfetti;
+</script>
+
+</body>
+</html>
